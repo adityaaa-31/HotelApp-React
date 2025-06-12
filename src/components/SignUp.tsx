@@ -1,19 +1,21 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { userSignUp } from "../services/UserService";
+import * as yup from "yup";
 
 export default function SignUp() {
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  // const [signupStatus, setSignUpStatus] = useState<boolean>(false);
 
-//yup
-  function handleSubmit() {
-    if (name.trim() !== "" && email.trim() !== "") {
+  const schema = yup.object().shape({
+    name: yup.string().trim().required("Name is required"),
+    email: yup.string().trim().email("Invalid email format").required("Email is required"),
+    password: yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
+  });
+
+  async function handleSubmit() {
+      await schema.validate({name, email, password})
       userSignUp(name, email, password);
-    } else {
-      alert("Invalid");
-    }
   }
 
   return (
