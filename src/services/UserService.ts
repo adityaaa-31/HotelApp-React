@@ -1,7 +1,8 @@
 import axios from "axios";
 
+const apiUrl = import.meta.env.BASE_URL;
 export async function getUsers() {
-  const users = await axios.get("http://localhost:8080/users");
+  const users = await axios.get(`${apiUrl}/sign-up`);
 
   if (!users.status) {
     throw Error("Failed");
@@ -21,7 +22,7 @@ export async function userSignUp(
     password: password,
   };
 
-  const res = await axios.post("http://localhost:8080/sign-up", userData);
+  const res = await axios.post(`${apiUrl}/sign-up`, userData);
 
   if (!res.status) {
     return Error("Failed");
