@@ -1,18 +1,18 @@
 import "./App.css";
 import "./index.css";
 
-import UserData from "./components/UserData";
 import SignUp from "./components/SignUp";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
+    <BrowserRouter>
     <div className="App">
-      {/* <Routes>
-          <Route path="/" Component={HomePage} />
-          <Route path="/users" Component={UserData} />
-        </Routes> */}
-      <SignUp />
+      <Routes>
+          <Route path="/" Component={SignUp} />
+      </Routes>
     </div>
+    </BrowserRouter>
   );
 }
 
