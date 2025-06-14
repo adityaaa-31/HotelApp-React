@@ -22,11 +22,11 @@ export async function userSignUp(
     password: password,
   };
 
-  const res = await axios.post(`${apiUrl}/sign-up`, userData);
+  const response = await axios.post(`${apiUrl}/api/auth/sign-up`, userData);
 
-  if (!res.status) {
+  if (!response.status) {
     return Error("Failed");
   }
 
-  return res.data;
+  return response.data;
 }
